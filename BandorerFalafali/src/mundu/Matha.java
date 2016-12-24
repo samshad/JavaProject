@@ -36,6 +36,7 @@ public class Matha extends StateBasedGame{
 			kola.setDisplayMode(800, 600, false);
 			kola.setTargetFrameRate(60);
 			ShobdoKori.Splay();
+			ShobdoKori.SAh1();
 			kola.start();
 
 		} catch(SlickException e){

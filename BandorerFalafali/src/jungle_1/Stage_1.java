@@ -4,6 +4,8 @@ import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import shobdo.ShobdoKori;
+
 public class Stage_1 extends BasicGameState{
 	
 	private String coor, timer;
@@ -15,7 +17,7 @@ public class Stage_1 extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		gc.setTargetFrameRate(60);
 		coor = ""; timer = ""; t = 0; bandorX = 95; bandorY = 350;
-		backg = new Image("RawFiles/Pics/Stage_1/1x.png");
+		backg = new Image("RawFiles/Pics/Stage_1/1z.png");
 		bandorUp = new Image("RawFiles/Pics/Bandor/Monkeyup.png");
 	}
 
@@ -31,6 +33,7 @@ public class Stage_1 extends BasicGameState{
 		printTime(delta);
 		checkForInput(gc, sbg);
 		nicheNamai();
+		checkBandorPos();
 	}
 
 	public int getID(){
@@ -67,6 +70,14 @@ public class Stage_1 extends BasicGameState{
 		}
 	}
 	
+	public void checkBandorPos() throws SlickException{
+		if(bandorX == 95){
+			if(bandorY <= 183 && bandorY >= 155){
+				ShobdoKori.Ah1.play();
+			}
+		}
+	}
+
 	public void nicheNamai(){
 		bandorY += 1;
 		

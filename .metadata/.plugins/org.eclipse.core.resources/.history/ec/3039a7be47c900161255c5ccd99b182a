@@ -1,0 +1,42 @@
+package mundu;
+
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
+
+public class Matha extends StateBasedGame{
+	
+	private static final String gameName = "BandorerKichhuEkta...!";
+	private static final int shururPata = 0;
+	private static final int loading = 1;
+	//private static final int jungle = 2;
+	
+	public Matha(String gameName){
+		super(gameName);
+		this.addState(new ShururPata(shururPata));
+		this.addState(new Loading(loading));
+		//this.addState(new Jungle(jungle));
+	}
+	
+	public void initStatesList(GameContainer gc) throws SlickException{
+		this.getState(shururPata).init(gc, this);
+		this.getState(loading).init(gc, this);
+		//this.getState(jungle).init(gc, this);
+		this.enterState(shururPata);
+	}
+
+	public static void main(String[] args){
+		AppGameContainer kola;
+		
+		try{
+			
+			kola = new AppGameContainer(new Matha(gameName));
+			kola.setDisplayMode(800, 600, false);
+			//kola.setTargetFrameRate(59);
+			kola.start();
+			
+		} catch(SlickException e){
+			e.printStackTrace();
+		}
+	}
+	
+}

@@ -1,0 +1,37 @@
+package mundu;
+
+import org.lwjgl.input.*;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
+
+public class ShururPata extends BasicGameState{
+	
+	private String coor;
+	
+	public ShururPata(int id){
+	}
+
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
+		
+	}
+
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
+		g.drawString(coor, 100, 200);
+	}
+
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+		printCoordinate();
+	}
+
+	public int getID(){
+		return 0;
+	}
+	
+	public void printCoordinate(){
+		int x = Mouse.getX();
+		int y = Mouse.getY();
+		
+		coor = "X: " + x + "\nY: " + y;
+	}
+
+}

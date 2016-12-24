@@ -1,0 +1,47 @@
+package mundu;
+
+import org.lwjgl.input.Mouse;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
+
+public class Loading extends BasicGameState{
+	
+	private String coor, time;
+	private Image backg;
+	private int t;
+	
+	public Loading(int id){
+	}
+
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
+		coor = "";
+		time = "";
+		t = 0;
+		backg = new Image("RawFiles/Pics/loading.png");
+		kola.setTargetFrameRate(30);
+	}
+
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
+		g.drawImage(backg, 0, 0);
+		g.drawString(coor, 720, 12);
+		g.drawString(time, 350, 350);
+	}
+
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+		printCoordinate();
+		t++;
+		time = "Time: " + (t / 60);
+	}
+
+	public int getID(){
+		return 1;
+	}
+	
+	public void printCoordinate(){
+		int x = Mouse.getX();
+		int y = Mouse.getY();
+		
+		coor = "X: " + x + "\nY: " + (y);
+	}
+
+}

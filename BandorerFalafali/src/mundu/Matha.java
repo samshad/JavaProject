@@ -29,7 +29,7 @@ public class Matha extends StateBasedGame{
 
 	public static void main(String[] args){
 		AppGameContainer kola;
-		
+
 		try{
 			
 			kola = new AppGameContainer(new Matha(gameName));

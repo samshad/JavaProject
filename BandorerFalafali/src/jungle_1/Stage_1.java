@@ -11,7 +11,7 @@ public class Stage_1 extends BasicGameState{
 	private String coor, timer, koytaCoin;
 	private Image backg, bandorUp, coin;
 	private int t, bandorX, bandorY, koyta;
-	private boolean cc;
+	private boolean [] cc = new boolean[3];
 	
 	public Stage_1(int id){}
 
@@ -21,7 +21,10 @@ public class Stage_1 extends BasicGameState{
 		backg = new Image("RawFiles/Pics/Stage_1/1z.png");
 		bandorUp = new Image("RawFiles/Pics/Bandor/Monkeyup.png");
 		coin = new Image("RawFiles/Pics/coin.png");
-		cc = true;
+		
+		for(int i = 0; i < 3; i++){
+			cc[i] = true;
+		}
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
@@ -31,8 +34,16 @@ public class Stage_1 extends BasicGameState{
 		g.drawString(koytaCoin, 710, 75);
 		g.drawImage(bandorUp, bandorX, bandorY);
 
-		if(cc){
+		if(cc[0]){
 			g.drawImage(coin, 300, 105);
+		}
+		
+		if(cc[1]){
+			g.drawImage(coin, 480, 105);
+		}
+		
+		if(cc[2]){
+			g.drawImage(coin, 660, 105);
 		}
 	}
 
@@ -41,6 +52,7 @@ public class Stage_1 extends BasicGameState{
 		checkForInput(gc, sbg);
 		nicheNamai();
 		checkBandorPos();
+		checkForCoin();
 	}
 
 	public int getID(){
@@ -83,11 +95,27 @@ public class Stage_1 extends BasicGameState{
 				ShobdoKori.Ah1.play();
 			}
 		}
-		
+	}
+	
+	public void checkForCoin(){
 		if(bandorX >= 275 && bandorX <= 345 && bandorY >= 105 && bandorY <= 140){
-			if(cc){
+			if(cc[0]){
 				koyta++;
-				cc = false;
+				cc[0] = false;
+			}
+		}
+		
+		if(bandorX >= 455 && bandorX <= 525 && bandorY >= 105 && bandorY <= 140){
+			if(cc[1]){
+				koyta++;
+				cc[1] = false;
+			}
+		}
+		
+		if(bandorX >= 635 && bandorX <= 705 && bandorY >= 105 && bandorY <= 140){
+			if(cc[2]){
+				koyta++;
+				cc[2] = false;
 			}
 		}
 	}

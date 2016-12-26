@@ -1,31 +1,27 @@
-package mundu;
-
-import shobdo.ShobdoKori;
+package Over;
 
 import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class ShururPata extends BasicGameState{
+public class SesherPata extends BasicGameState{
 	
 	private String coor = "";
-	private Image backg, startb, exitb, soundb;
+	private Image backg, menu, again;
 	
-	public ShururPata(int id){}
+	public SesherPata(int id){}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
-		backg = new Image("RawFiles/Pics/mainScreen.png");
-		startb = new Image("RawFiles/Pics/1Start.png");
-		exitb = new Image("RawFiles/Pics/exit.png");
-		soundb = new Image("RawFiles/Pics/soundb.png");
+		backg = new Image("RawFiles/Pics/GameOver/GameOver.png");
+		menu = new Image("RawFiles/Pics/GameOver/mainmenuButtonr.png");
+		again = new Image("RawFiles/Pics/GameOver/playagnButtonr.png");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		g.drawImage(backg, 0, 0);
 		g.drawString(coor, 720, 12);
-		g.drawImage(startb, 250, 50);
-		g.drawImage(exitb, 250, 110);
-		g.drawImage(soundb, 755, 555);
+		g.drawImage(menu, 258, 360);
+		g.drawImage(again, 258, 430);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
@@ -34,7 +30,7 @@ public class ShururPata extends BasicGameState{
 	}
 
 	public int getID(){
-		return 0;
+		return 6;
 	}
 	
 	public void checkForInput(GameContainer gc, StateBasedGame sbg){
@@ -42,27 +38,22 @@ public class ShururPata extends BasicGameState{
 		int y = Mouse.getY();
 		Input in = gc.getInput();
 		
-		if(x >= 250 && x <= 421 && y >= 507 && y <= 549){
+		if(x >= 260 && x <= 536 && y >= 171 && y <= 240){
 			if(in.isMousePressed(0)){
+				sbg.enterState(0);
+			}
+		}
+		
+		if(x >= 260 && x <= 536 && y >= 100 && y <=167){
+			if(in.isMousePressed(0)){
+				
 				sbg.enterState(1);
 			}
 		}
 		
-		if(x >= 755 && x <= 790 && y >= 10 && y <= 45){
+		if(x >= 258 && x <= 438 && y >= 430 && y <= 500){
 			if(in.isMousePressed(0)){
-				if(ShobdoKori.music.playing()){
-					ShobdoKori.music.stop();
-				}
-				
-				else{
-					ShobdoKori.music.loop();
-				}
-			}
-		}
-		
-		if(x >= 250 && x <= 421 && y >= 447 && y <= 490){
-			if(in.isMousePressed(0)){
-				System.exit(0);
+				sbg.enterState(2);
 			}
 		}
 	}

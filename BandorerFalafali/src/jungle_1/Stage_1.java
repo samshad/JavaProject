@@ -11,6 +11,8 @@ public class Stage_1 extends BasicGameState{
 	private String coor, timer, koytaCoin;
 	private Image backg, bandorUp, coin;
 	private int t, bandorX, bandorY, koyta;
+	private int []xobs;
+	private int []yobs;
 	private boolean [] cc = new boolean[3];
 	
 	public Stage_1(int id){}
@@ -20,6 +22,10 @@ public class Stage_1 extends BasicGameState{
 		coor = ""; timer = ""; t = 0; bandorX = 95; bandorY = 350; koyta = 0; koytaCoin = "";
 		backg = new Image("RawFiles/Pics/Stage_1/1z.png");
 		bandorUp = new Image("RawFiles/Pics/Bandor/Monkeyup.png");
+		
+		xobs= new int[]{107,288,285,468,647,647};
+		yobs= new int[]{180,30,360,240,39,460};
+		
 		coin = new Image("RawFiles/Pics/coin.png");
 		
 		for(int i = 0; i < 3; i++){
@@ -51,7 +57,7 @@ public class Stage_1 extends BasicGameState{
 		updatePrints(delta);
 		checkForInput(gc, sbg);
 		nicheNamai();
-		checkBandorPos();
+		checkBandorPos(gc, sbg);
 		checkForCoin();
 	}
 
@@ -89,11 +95,18 @@ public class Stage_1 extends BasicGameState{
 		}
 	}
 	
-	public void checkBandorPos() throws SlickException{
-		if(bandorX == 95){
-			if(bandorY <= 183 && bandorY >= 155){
-				ShobdoKori.Ah1.play();
+	public void checkBandorPos(GameContainer gc, StateBasedGame sbg) throws SlickException{
+		for(int i=0; i < xobs.length; i++){
+			if(bandorX < xobs[i] + 60 && bandorX + 30 > xobs[i] && bandorY < yobs[i] + 30 && 70 + bandorY > yobs[i]){
+        	  	ShobdoKori.Ah1.play();
+        	  	init(gc,sbg);
+        	  	sbg.enterState(6);
 			}
+        }
+		
+		if(bandorY < -5){
+			init(gc, sbg);
+			sbg.enterState(3);
 		}
 	}
 	

@@ -5,6 +5,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 import coin.Coin;
+import mundu.JaDorkar;
 import shobdo.ShobdoKori;
 
 public class Stage_1 extends BasicGameState{
@@ -15,13 +16,15 @@ public class Stage_1 extends BasicGameState{
 	private int []xobs;
 	private int []yobs;
 	
+	private boolean bandorP;
+	
 	public Stage_1(int id){}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		gc.setTargetFrameRate(60);
 		coor = ""; timer = ""; t = 0; bandorX = 95; bandorY = 350; koytaCoin = "";
 		backg = new Image("RawFiles/Pics/Stage_1/1z.png");
-		bandorUp = new Image("RawFiles/Pics/Bandor/Monkeyup.png");
+		bandorUp = new Image("RawFiles/Pics/Bandor/2.png");
 		
 		xobs= new int[]{107,288,285,468,647,647};
 		yobs= new int[]{180,30,360,240,39,460};
@@ -31,6 +34,8 @@ public class Stage_1 extends BasicGameState{
 		for(int i = 0; i < Coin.st1x.length; i++){
 			Coin.stb[i] = true;
 		}
+		
+		bandorP = false;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
@@ -53,6 +58,10 @@ public class Stage_1 extends BasicGameState{
 		nicheNamai();
 		checkBandorPos(gc, sbg);
 		checkForCoin();
+		if(JaDorkar.clearKormu){
+			JaDorkar.clearKormu = false;
+			init(gc, sbg);
+		}
 	}
 
 	public int getID(){
@@ -63,10 +72,21 @@ public class Stage_1 extends BasicGameState{
 		Input in = gc.getInput();
 		
 		if(in.isKeyPressed(Input.KEY_ESCAPE)){
-			sbg.enterState(0);
+			JaDorkar.state = getID();
+			sbg.enterState(7);
 		}
-		
+
 		if(in.isKeyPressed(Input.KEY_SPACE)){
+			if(bandorP){
+				bandorP = !bandorP;
+				bandorUp = new Image("RawFiles/Pics/Bandor/2.png");
+			}
+			
+			else if(!bandorP){
+				bandorP = !bandorP;
+				bandorUp = new Image("RawFiles/Pics/Bandor/1.png");
+			}
+			
 			bandorY -= 70;
 		}
 		
@@ -94,7 +114,7 @@ public class Stage_1 extends BasicGameState{
 			if(bandorX < xobs[i] + 60 && bandorX + 30 > xobs[i] && bandorY < yobs[i] + 30 && 70 + bandorY > yobs[i]){
         	  	ShobdoKori.Ah1.play();
         	  	init(gc,sbg);
-        	  	sbg.enterState(6);
+        	  	sbg.enterState(8);
 			}
         }
 		
@@ -105,7 +125,7 @@ public class Stage_1 extends BasicGameState{
 		
 		if(bandorY > 510){
 			init(gc, sbg);
-			sbg.enterState(6);
+			sbg.enterState(8);
 		}
 	}
 	

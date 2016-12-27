@@ -64,6 +64,8 @@ public class Loading extends BasicGameState{
 		
 		if(in.isKeyPressed(Input.KEY_Z)){
 			init(gc, sbg);
+			ShobdoKori.music.stop();
+			ShobdoKori.inGame.loop();
 			sbg.enterState(2);
 		}
 		

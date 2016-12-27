@@ -4,24 +4,25 @@ import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import coin.Coin;
+
 public class SesherPata extends BasicGameState{
 	
-	private String coor = "";
-	private Image backg, menu, again;
+	private String coor = "", Score;
+	private Image backg;
 	
 	public SesherPata(int id){}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
-		backg = new Image("RawFiles/Pics/GameOver/GameOver.png");
-		menu = new Image("RawFiles/Pics/GameOver/mainmenuButtonr.png");
-		again = new Image("RawFiles/Pics/GameOver/playagnButtonr.png");
+		backg = new Image("RawFiles/Pics/GameOver/cong.png");
+		Score = "";
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		g.drawImage(backg, 0, 0);
 		g.drawString(coor, 720, 12);
-		g.drawImage(menu, 258, 360);
-		g.drawImage(again, 258, 450);
+		g.setColor(Color.blue);
+		g.drawString(Score, 322, 600 - 316);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
@@ -37,22 +38,10 @@ public class SesherPata extends BasicGameState{
 		int x = Mouse.getX();
 		int y = Mouse.getY();
 		Input in = gc.getInput();
-		
-		if(x >= 260 && x <= 536 && y >= 171 && y <= 240){
+
+		if(x >= 270 && x <= 547 && y >= 153 && y <= 219){
 			if(in.isMousePressed(0)){
-				sbg.enterState(0);
-			}
-		}
-		
-		if(x >= 260 && x <= 536 && y >= 100 && y <=167){
-			if(in.isMousePressed(0)){
-				sbg.enterState(1);
-			}
-		}
-		
-		if(x >= 258 && x <= 438 && y >= 430 && y <= 500){
-			if(in.isMousePressed(0)){
-				sbg.enterState(2);
+				System.exit(0);
 			}
 		}
 	}
@@ -62,6 +51,7 @@ public class SesherPata extends BasicGameState{
 		int y = Mouse.getY();
 		
 		coor = "X: " + x + "\nY: " + (y);
+		Score = "Total Score: " + Coin.points;
 	}
 
 }

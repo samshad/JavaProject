@@ -7,6 +7,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 import Over.SesherPata;
+import coin.Coin;
 
 public class Matha extends StateBasedGame{
 	
@@ -51,6 +52,7 @@ public class Matha extends StateBasedGame{
 			kola.setTargetFrameRate(60);
 			ShobdoKori.Splay();
 			ShobdoKori.SAh1();
+			Coin.init();
 			kola.start();
 
 		} catch(SlickException e){

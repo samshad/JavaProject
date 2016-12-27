@@ -4,6 +4,7 @@ import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import coin.Coin;
 import shobdo.ShobdoKori;
 
 public class Stage_1 extends BasicGameState{
@@ -13,7 +14,6 @@ public class Stage_1 extends BasicGameState{
 	private int t, bandorX, bandorY, koyta;
 	private int []xobs;
 	private int []yobs;
-	private boolean [] cc = new boolean[3];
 	
 	public Stage_1(int id){}
 
@@ -26,10 +26,10 @@ public class Stage_1 extends BasicGameState{
 		xobs= new int[]{107,288,285,468,647,647};
 		yobs= new int[]{180,30,360,240,39,460};
 		
-		coin = new Image("RawFiles/Pics/coin.png");
+		coin = new Image("RawFiles/Pics/Gcoin.png");
 		
-		for(int i = 0; i < 3; i++){
-			cc[i] = true;
+		for(int i = 0; i < Coin.st1x.length; i++){
+			Coin.st1b[i] = true;
 		}
 	}
 
@@ -39,17 +39,11 @@ public class Stage_1 extends BasicGameState{
 		g.drawString(timer, 710, 55);
 		g.drawString(koytaCoin, 710, 75);
 		g.drawImage(bandorUp, bandorX, bandorY);
-
-		if(cc[0]){
-			g.drawImage(coin, 300, 105);
-		}
 		
-		if(cc[1]){
-			g.drawImage(coin, 480, 105);
-		}
-		
-		if(cc[2]){
-			g.drawImage(coin, 660, 105);
+		for(int i = 0; i < Coin.st1x.length; i++){
+			if(Coin.st1b[i]){
+				g.drawImage(coin, Coin.st1x[i], Coin.st1y[i]);
+			}
 		}
 	}
 
@@ -111,24 +105,13 @@ public class Stage_1 extends BasicGameState{
 	}
 	
 	public void checkForCoin(){
-		if(bandorX >= 275 && bandorX <= 345 && bandorY >= 105 && bandorY <= 140){
-			if(cc[0]){
-				koyta++;
-				cc[0] = false;
-			}
-		}
-		
-		if(bandorX >= 455 && bandorX <= 525 && bandorY >= 105 && bandorY <= 140){
-			if(cc[1]){
-				koyta++;
-				cc[1] = false;
-			}
-		}
-		
-		if(bandorX >= 635 && bandorX <= 705 && bandorY >= 105 && bandorY <= 140){
-			if(cc[2]){
-				koyta++;
-				cc[2] = false;
+		for(int i = 0; i < Coin.st1x.length; i++){
+			if(bandorX < Coin.st1x[i] + 60 && bandorX + 30 > Coin.st1x[i] && bandorY < Coin.st1y[i] + 30 && 70 + bandorY > Coin.st1y[i]){
+        	  	if(Coin.st1b[i]){
+        	  		//ShobdoKori.Ah1.play();
+	        	  	Coin.st1b[i] = false;
+	        	  	koyta++;
+        	  	}
 			}
 		}
 	}

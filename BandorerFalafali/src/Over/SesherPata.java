@@ -21,7 +21,7 @@ public class SesherPata extends BasicGameState{
 		g.drawImage(backg, 0, 0);
 		g.drawString(coor, 720, 12);
 		g.drawImage(menu, 258, 360);
-		g.drawImage(again, 258, 430);
+		g.drawImage(again, 258, 450);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
@@ -46,7 +46,6 @@ public class SesherPata extends BasicGameState{
 		
 		if(x >= 260 && x <= 536 && y >= 100 && y <=167){
 			if(in.isMousePressed(0)){
-				
 				sbg.enterState(1);
 			}
 		}

@@ -29,7 +29,7 @@ public class Stage_1 extends BasicGameState{
 		coin = new Image("RawFiles/Pics/Gcoin.png");
 		
 		for(int i = 0; i < Coin.st1x.length; i++){
-			Coin.st1b[i] = true;
+			Coin.stb[i] = true;
 		}
 	}
 
@@ -41,7 +41,7 @@ public class Stage_1 extends BasicGameState{
 		g.drawImage(bandorUp, bandorX, bandorY);
 		
 		for(int i = 0; i < Coin.st1x.length; i++){
-			if(Coin.st1b[i]){
+			if(Coin.stb[i]){
 				g.drawImage(coin, Coin.st1x[i], Coin.st1y[i]);
 			}
 		}
@@ -102,14 +102,19 @@ public class Stage_1 extends BasicGameState{
 			init(gc, sbg);
 			sbg.enterState(3);
 		}
+		
+		if(bandorY > 510){
+			init(gc, sbg);
+			sbg.enterState(6);
+		}
 	}
 	
 	public void checkForCoin(){
 		for(int i = 0; i < Coin.st1x.length; i++){
 			if(bandorX < Coin.st1x[i] + 60 && bandorX + 30 > Coin.st1x[i] && bandorY < Coin.st1y[i] + 30 && 70 + bandorY > Coin.st1y[i]){
-        	  	if(Coin.st1b[i]){
+        	  	if(Coin.stb[i]){
         	  		//ShobdoKori.Ah1.play();
-	        	  	Coin.st1b[i] = false;
+	        	  	Coin.stb[i] = false;
 	        	  	koyta++;
         	  	}
 			}

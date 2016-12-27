@@ -26,8 +26,8 @@ public class Stage_1 extends BasicGameState{
 		backg = new Image("RawFiles/Pics/Stage_1/1z.png");
 		bandorUp = new Image("RawFiles/Pics/Bandor/2.png");
 		
-		xobs= new int[]{107,288,285,468,647,647};
-		yobs= new int[]{180,30,360,240,39,460};
+		xobs = new int[]{107,288,285,468,647,647};
+		yobs = new int[]{180,30,360,240,39,460};
 		
 		coin = new Image("RawFiles/Pics/Gcoin.png");
 		
@@ -61,6 +61,7 @@ public class Stage_1 extends BasicGameState{
 		if(JaDorkar.clearKormu){
 			JaDorkar.clearKormu = false;
 			init(gc, sbg);
+			//gc.reinit();
 		}
 	}
 

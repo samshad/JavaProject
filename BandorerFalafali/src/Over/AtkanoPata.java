@@ -35,7 +35,7 @@ public class AtkanoPata extends BasicGameState{
 		return 7;
 	}
 	
-	public void checkForInput(GameContainer gc, StateBasedGame sbg){
+	public void checkForInput(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		int x = Mouse.getX();
 		int y = Mouse.getY();
 		int r = 58;
@@ -50,6 +50,7 @@ public class AtkanoPata extends BasicGameState{
 		else if(Math.sqrt(Math.pow((448-x),2)+Math.pow((278-y),2))<r){
 			if(in.isMousePressed(0)){
 				JaDorkar.clearKormu = true;
+				gc.reinit();
 				sbg.enterState(0);
 			}
 		}

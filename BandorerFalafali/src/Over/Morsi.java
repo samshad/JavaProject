@@ -14,7 +14,7 @@ public class Morsi extends BasicGameState{
 	public Morsi(int id){}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
-		backg = new Image("RawFiles/Pics/GameOver/gameover.png");
+		backg = new Image("RawFiles/Pics/GameOver/Gameover1.png");
 		Score = "";
 	}
 
@@ -33,14 +33,15 @@ public class Morsi extends BasicGameState{
 		return 8;
 	}
 	
-	public void checkForInput(GameContainer gc, StateBasedGame sbg){
+	public void checkForInput(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		int x = Mouse.getX();
 		int y = Mouse.getY();
 		Input in = gc.getInput();
 
 		if(x >= 270 && x <= 547 && y >= 153 && y <= 219){
 			if(in.isMousePressed(0)){
-				System.exit(0);
+				gc.reinit();
+				sbg.enterState(0);
 			}
 		}
 	}

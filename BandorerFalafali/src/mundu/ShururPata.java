@@ -6,6 +6,8 @@ import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import coin.Coin;
+
 public class ShururPata extends BasicGameState{
 	
 	private String coor = "";
@@ -22,6 +24,7 @@ public class ShururPata extends BasicGameState{
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException{
 		g.drawImage(backg, 0, 0);
+		g.setColor(Color.white);
 		g.drawString(coor, 720, 12);
 		g.drawImage(startb, 250, 50);
 		g.drawImage(exitb, 250, 110);
@@ -44,6 +47,7 @@ public class ShururPata extends BasicGameState{
 		
 		if(x >= 250 && x <= 421 && y >= 507 && y <= 549){
 			if(in.isMousePressed(0)){
+				Coin.points = 0;
 				sbg.enterState(1);
 			}
 		}

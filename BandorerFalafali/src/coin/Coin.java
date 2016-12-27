@@ -12,6 +12,8 @@ public final class Coin{
 	public static int [] st4y;
 	public static boolean [] stb;
 	
+	public static int points;
+	
 	public static void init(){
 		st1x =  new int[]{100,284,284,284,461,461,461,461,641,641,641,641};
 		st1y = new int[]{227,106,239,437,62,198,304,474,80,185,307,422};

@@ -53,6 +53,7 @@ public class Matha extends StateBasedGame{
 			ShobdoKori.Splay();
 			ShobdoKori.SAh1();
 			Coin.init();
+			Coin.points = 0;
 			kola.start();
 
 		} catch(SlickException e){

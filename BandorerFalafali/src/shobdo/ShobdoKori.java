@@ -6,13 +6,14 @@ import org.newdawn.slick.Sound;
 
 public final class ShobdoKori{
 	
-	public static Music music;
+	public static Music music, inGame;
 	public static Sound Ah1;
 	
 	public ShobdoKori(){}
 	
 	public static void Splay() throws SlickException{
-		music = new Music("RawFiles/Audio/Gold.wav");
+		music = new Music("RawFiles/Audio/main1.wav");
+		inGame = new Music("RawFiles/Audio/inGame.wav");
 		music.loop();
 	}
 	

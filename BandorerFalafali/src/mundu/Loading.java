@@ -4,6 +4,8 @@ import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import shobdo.ShobdoKori;
+
 public class Loading extends BasicGameState{
 	
 	private String coor, timer;
@@ -47,6 +49,8 @@ public class Loading extends BasicGameState{
 		
 		if(t / 1000 >= 5){
 			init(gc, sbg);
+			ShobdoKori.music.stop();
+			ShobdoKori.inGame.loop();
 			sbg.enterState(2);
 		}
 	}

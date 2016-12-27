@@ -11,7 +11,7 @@ public class Stage_3 extends BasicGameState{
 	
 	private String coor, timer, koytaCoin;
 	private Image backg, bandorUp, coin;
-	private int t, bandorX, bandorY, koyta;
+	private int t, bandorX, bandorY;
 	private int []xobs;
 	private int []yobs;
 	
@@ -19,7 +19,7 @@ public class Stage_3 extends BasicGameState{
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
 		gc.setTargetFrameRate(60);
-		coor = ""; timer = ""; t = 0; bandorX = 95; bandorY = 350; koyta = 0; koytaCoin = "";
+		coor = ""; timer = ""; t = 0; bandorX = 95; bandorY = 350; koytaCoin = "";
 		backg = new Image("RawFiles/Pics/Stage_1/3z.png");
 		bandorUp = new Image("RawFiles/Pics/Bandor/Monkeyup.png");
 		
@@ -115,7 +115,7 @@ public class Stage_3 extends BasicGameState{
         	  	if(Coin.stb[i]){
         	  		//ShobdoKori.Ah1.play();
 	        	  	Coin.stb[i] = false;
-	        	  	koyta++;
+	        	  	Coin.points++;
         	  	}
 			}
 		}
@@ -138,7 +138,7 @@ public class Stage_3 extends BasicGameState{
 		t += delta;
 		timer = "Time: " + (t / 1000);
 		
-		koytaCoin = "Total: " + koyta;
+		koytaCoin = "Total: " + Coin.points;
 	}
 	
 }
